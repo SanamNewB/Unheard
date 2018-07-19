@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private RandomColors colorWheel = new RandomColors();
     // Declare our View variables
     private TextView factTextView;
-    private Button showFactButton;
+    private Button showNextButton;
+    private Button showPreviousButton;
     private LinearLayout linearLayout;
 
     @Override
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.acti);
         // Assign the Views from the layout file to the corresponding variables
         factTextView = findViewById(R.id.factTextView);
-        showFactButton = findViewById(R.id.showFactButton);
+        showNextButton = findViewById(R.id.showNextButton);
+        //showPreviousButton =findViewById(R.id.showPreviousButton);
         linearLayout = findViewById(R.id.linearLayout);
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -35,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
                 int color = colorWheel.getColor();
                 linearLayout.setBackgroundColor(color);
-                showFactButton.setTextColor(color);
+                showNextButton.setTextColor(color);
+                //showPreviousButton.setTextColor(color);
             }
         };
-        showFactButton.setOnClickListener(listener);
+        showNextButton.setOnClickListener(listener);
+        //showPreviousButton.setOnClickListener(listener);
     }
 }
