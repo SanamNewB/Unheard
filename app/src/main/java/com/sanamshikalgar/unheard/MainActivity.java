@@ -16,32 +16,43 @@ public class MainActivity extends AppCompatActivity {
     private Button showNextButton;
     private Button showPreviousButton;
     private LinearLayout linearLayout;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acti);
+        setContentView(R.layout.activity_main);
+        
         // Assign the Views from the layout file to the corresponding variables
         factTextView = findViewById(R.id.factTextView);
-        showNextButton = findViewById(R.id.showNextButton);
-        //showPreviousButton =findViewById(R.id.showPreviousButton);
+        factTextView.setText(factBook.getFact()); // Update the screen with our new fact to start execution right away
         linearLayout = findViewById(R.id.linearLayout);
-
-        View.OnClickListener listener = new View.OnClickListener() {
+        showNextButton = findViewById(R.id.showNextButton);
+        showPrevious = findViewById(R.id.showPreviousText);
+        
+        // Shuffle Button logic
+        showNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String fact = factBook.getFact();
-
-                // Update the screen with our new fact
+                counter++;
                 factTextView.setText(fact);
 
                 int color = colorWheel.getColor();
                 linearLayout.setBackgroundColor(color);
-                showNextButton.setTextColor(color);
-                //showPreviousButton.setTextColor(color);
             }
-        };
-        showNextButton.setOnClickListener(listener);
-        //showPreviousButton.setOnClickListener(listener);
+        });
+        
+        // Previous Button logic
+        showPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String fact = factBook.getPreviousFact();
+                factTextView.setText(fact);
+
+                int color = colorWheel.getColor();
+                linearLayout.setBackgroundColor(color);
+            }
+        });
     }
 }
